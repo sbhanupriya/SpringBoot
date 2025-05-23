@@ -1,5 +1,9 @@
 package com.example.springboot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"department"})
 public class Employee {
     private String employeeId;
 
@@ -46,5 +50,6 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String emailId;
+    @JsonIgnore
     private String department;
 }
