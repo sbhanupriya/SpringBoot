@@ -1,5 +1,6 @@
 package com.example.springboot.service;
 
+import com.example.springboot.error.EmployeeNotFoundException;
 import com.example.springboot.model.Employee;
 import org.springframework.stereotype.Service;
 
@@ -20,4 +21,22 @@ public class EmployeeServiceImpl implements EmployeeService{
         employeeList.add(employee);
         return employee;
     }
+
+    @Override
+    public List<Employee> getAllEmployees() {
+        return employeeList;
+    }
+
+    @Override
+    public Employee getEmployeeById(String id){
+        return employeeList.stream().filter(emp -> emp.getEmployeeId().equalsIgnoreCase(id)).findFirst().get();
+    }
+
+    @Override
+    public String deleteEmployeeById(String id) {
+        Employee employee =  employeeList.stream().filter(e -> e.getEmployeeId().equals(id)).findFirst().get();
+        employeeList.remove(employee);
+        return "Employee deleted with Id " + id;
+    }
+
 }
